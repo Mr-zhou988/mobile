@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Game</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="asset/mobile/images/game.png" type="image/x-icon" />
+	<link rel="stylesheet" href="asset/mobile/css/mobile.css?v=1.0.1" />
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <div class="g-hd f-cb">
+      <a class="logo" href="../index.html"></a>
+      <div class="panel">
+        <a href="javascript:void(0);" id="JS-show-game-categories"><i class="icon-categories"></i></a>
+        <ul class="mg-sort" id="JS-game-categories">
+          <template v-for="cate in mainCategories" :key="cate.id">
+            <li>
+              <a
+                :href="cate.id === 15 ? `index.html?gameChannelId=${gameChannelId}` : handleToType(cate)">{{cate.name}}</a>
+            </li>
+            <li v-if="cate.id === 15">
+              <a :href="`popular.html?gameChannelId=${gameChannelId}`">Popular</a>
+            </li>
+          </template>
+        </ul>
+      </div>
+    </div>
+    <div class="g-mn">
+      <div class="m-box">
+        <div class="m-box-mn">
+          <div class="m-game f-cb">
+            <img class="game-logo_img img-load" :data-src="detail.gameLogo" :alt="detail.gameName" />
+            <div class="game-bg-rgba"></div>
+            <div class="detail-images-box"><img class="img-load" src="asset/mobile/images/loading.svg"
+                :data-src="detail.gameLogo" :alt="detail.gameName"></div>
+          </div>
+
+          <div class="game-content">
+            <div class="game-cover">
+              <h1 class="game-name">{{detail.gameName}}</h1>
+            </div>
+            <span class="metas"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i> 4.5</span>
+            <a class="play" href="javascript:;" v-if="disabled"> Play </a>
+            <a class="play" :href="handleToPlay()" v-else> Play </a>
+            <div class="m-game-intro f-cb clearfix">
+              <h2 style="margin-top: 10px;">Introduction：</h2>
+              {{detail.gameDesc}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m-box">
+        <div class="m-box-hd">
+          <div class="tt">
+            Hot
+          </div>
+        </div>
+        <div class="m-box-mn">
+          <ul class="m-icon-list f-cb">
+            <li v-for="item in detail.gameListIndexVos" :key="item.gameId">
+              <a :href="handleToDetail(item.gameId, 'Popular')">
+                <img :src="item.gameLogo" :data-src="item.gameLogo" :alt="`${item.gameLogo}|${item.gameId}`"
+                  class="img-fluid blog-img" />
+                <span class="name">{{item.gameName}}</span>
+                <p class="text-dark">❤{{item.gameId}}</p>
+                <span class="download">Play </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <footer v-html="footer" class="footer"></footer>
+    </div>
+    <div class="g-ft f-cb">
+      <div class="f-fl">
+        <small>© 2026 Jobzmac.com. All rights reserved.</small>
+      </div>
+      <div class="f-fr">
+        <a href="#" class="to-top">⬆Top</a>
+        <br />
+      </div>
+    </div>
+  </div>
+</body>
+<script src="asset/mobile/js/jquery.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/swiper.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/main.js?v=1.0.1"></script>
+<script src="asset/mobile/js/footer.js?v=1.0.1"></script>
+<script src="asset/mobile/js/gameData.js?v=1.0.1"></script>
+<script src="asset/mobile/js/vue.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/axios.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/detail.js?v=1.0.1"></script>
+<script src="asset/mobile/js/mobile.js?v=1.0.1"></script>
+
+</html>

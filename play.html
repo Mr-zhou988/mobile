@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="asset/mobile/images/game.png" type="image/x-icon" />
+	<link rel="stylesheet" href="asset/mobile/css/mobile.css?v=1.0.1" />
+    <link rel="stylesheet" href="asset/mobile/css/play.css?v=1.0.1" />
+</head>
+
+<body>
+    <div id="App" v-cloak>
+        <div class="play_game"><iframe class="game"
+                :src="`https://www.datinginfo.top/game/index.html?gameFileName=${gameFileName}/`" frameborder="0"
+                scrolling="no" allowfullscreen></iframe>
+            <div class="posterBanner" ref='topAd' v-html='poster4'></div>
+        </div><img src="asset/mobile/images/fanhui.png" class="back" @click="handleBackHome">
+</body>
+<script src="asset/mobile/js/vue.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/axios.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/play.js?v=1.0.1"></script>
+
+</html>

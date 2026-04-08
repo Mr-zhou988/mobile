@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Game</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="asset/mobile/images/game.png" type="image/x-icon" />
+	<link rel="stylesheet" href="asset/mobile/css/mobile.css?v=1.0.1" />
+</head>
+
+<body>
+	<div id="app" v-cloak>
+		<div class="g-hd f-cb">
+			<a class="logo" href="default.htm"></a>
+			<div class="panel">
+				<a href="javascript:void(0);" id="JS-show-game-categories"><i class="icon-categories"></i></a>
+				<ul class="mg-sort" id="JS-game-categories">
+					<template v-for="cate in mainCategories" :key="cate.id">
+						<li>
+							<a
+								:href="cate.id === 15 ? `index.html?gameChannelId=${gameChannelId}` : handleToType(cate)">{{cate.name}}</a>
+						</li>
+						<li v-if="cate.id === 15">
+							<a :href="`popular.html?gameChannelId=${gameChannelId}`">Popular</a>
+						</li>
+					</template>
+				</ul>
+			</div>
+		</div>
+		<div class="g-mn">
+			<div class="m-box" v-for="(parent, key) in gameList" :key="parent">
+				<div class="m-box-hd">
+					<a v-if="parent.name !== 'Home'" :href="handleToType(parent)">
+						<div class="tt">{{parent.name}}<span class="more-right">More >></span></div>
+					</a>
+				</div>
+				<div class="m-box-mn">
+					<ul class="m-cover-list f-cb">
+						<li class="has-cover" v-for="child in (parent.displayGames || parent.games || []).slice(0, 12)"
+							:key="child.gameId">
+							<a :href="handleToDetail(child.gameId, parent.name)">
+								<span class="cover proportion">
+									<img :src="child.gameLogo" :data-src="child.gameLogo"
+										:alt="`${child.gameLogo}|${child.gameId}`" />
+								</span>
+								<span class="name">{{child.gameName}}</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="m-box" v-for="(parent, key) in gameData" :key="parent">
+				<div class="m-box-hd">
+					<a :href="handleToType(parent)">
+						<div class="tt">{{parent.name}}<span class="more-right">More >></span></div>
+					</a>
+				</div>
+				<div class="m-box-mn">
+					<ul class="m-article-list">
+						<li class="has-cover" v-for="child in (parent.displayGames || parent.games || []).slice(0, 12)"
+							:key="child.gameId">
+							<a :href="handleToDetail(child.gameId, parent.name)">
+								<img class="cover" :src="child.gameLogo" :data-src="child.gameLogo"
+									:alt="`${child.gameLogo}|${child.gameId}`" />
+								<p style="line-height: 20px;">{{child.gameName}}</p>
+								<p class="text-dark">❤ Liek: {{child.gameId}}</p>
+								<p><span class="play" style="width: 100px !important;">Play</span></p>
+								<!-- <span class="text-dark d-block2">{{child.gameDesc}}</span> -->
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="m-box">
+				<div class="m-box-hd">
+					<a href="popular.html">
+						<div class="tt">Popular<span class="more-right">More >></span></div>
+					</a>
+				</div>
+				<div class="m-box-mn">
+					<ul class="m-icon-list f-cb">
+						<li v-for="item in popular.slice(0, 20)" :key="item.gameId">
+							<a :href="handleToDetail(item.gameId, 'Popular')">
+								<img :src="item.gameLogo" :data-src="item.gameLogo"
+									:alt="`${item.gameLogo}|${item.gameId}`">
+								<span class="name">{{item.gameName}}</span>
+								<span class="metas"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i> 4.5</span>
+								<span class="play">Play</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<footer v-html="footer" class="footer"></footer>
+		</div>
+
+		<div class="g-ft f-cb">
+			<div class="f-fl">
+				<small>© 2026 Jobzmac.com. All rights reserved.</small>
+			</div>
+			<div class="f-fr">
+				<a href="#" class="to-top">⬆Top</a>
+				<br />
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="asset/mobile/js/jquery.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/swiper.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/main.js?v=1.0.1"></script>
+<script src="asset/mobile/js/footer.js?v=1.0.1"></script>
+<script src="asset/mobile/js/gameData.js?v=1.0.1"></script>
+<script src="asset/mobile/js/vue.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/axios.min.js?v=1.0.1"></script>
+<script src="asset/mobile/js/index.js?v=1.0.1"></script>
+<script src="asset/mobile/js/mobile.js?v=1.0.1"></script>
+
+</html>
