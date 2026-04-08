@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="g-mn">
-			<div class="m-box" v-for="(parent, key) in gameList" :key="parent">
+			<div class="m-box" v-for="(parent, key) in gameData" :key="parent">
 				<div class="m-box-hd">
 					<a v-if="parent.name !== 'Home'" :href="handleToType(parent)">
 						<div class="tt">{{parent.name}}<span class="more-right">More >></span></div>
