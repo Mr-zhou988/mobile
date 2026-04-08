@@ -5,7 +5,6 @@ var vm = new Vue({
       showCate: false,
       gameData: [],
       popular: [],
-      gameList:[],
       footer: "",
       gameChannelId: 0,
       // 所有分类
@@ -120,6 +119,7 @@ var vm = new Vue({
           const now = Date.now();
           // 如果缓存未过期，直接使用
           if (cacheData.timestamp && now - cacheData.timestamp < cacheExpiry) {
+            this.gameData = cacheData.data || [];
             this.$nextTick(() => {
               handleScroll();
             });
@@ -145,6 +145,7 @@ var vm = new Vue({
           },
         })
           .then((res) => {
+            console.log(res.data);
             return {
               name: category.name,
               games: res.data.data || [],
@@ -178,7 +179,7 @@ var vm = new Vue({
           { name: "Casual", id: 13 },
         ];
         // 每个分类只显示12个游戏，并添加分类ID用于More链接
-        const gameList = results
+        const gameData = results
           .filter((item) => item.games && item.games.length > 0)
           .map((item) => {
             // 从 allCategoriesMap 中查找分类信息，确保所有分类都有正确的 ID
@@ -192,14 +193,14 @@ var vm = new Vue({
               id: category ? category.id : null, // 添加分类ID用于More链接
             };
           });
-        this.gameList = gameList;
+        this.gameData = gameData;
 
         // 保存到localStorage
         try {
           localStorage.setItem(
             storageKey,
             JSON.stringify({
-              data: gameList,
+              data: gameData,
               timestamp: Date.now(),
             }),
           );
