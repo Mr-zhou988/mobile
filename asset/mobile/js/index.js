@@ -5,6 +5,7 @@ var vm = new Vue({
       showCate: false,
       gameData: [],
       popular: [],
+      gameList:[],
       footer: "",
       gameChannelId: 0,
       // 所有分类
@@ -89,9 +90,9 @@ var vm = new Vue({
     },
   },
   created() {
-    this.styleGameList();
     this.loadGameData();
     this.loadPopularGames();
+    this.styleGameList();
   },
   mounted() {
     // 确保Vue渲染完成后移除v-cloak并显示导航
