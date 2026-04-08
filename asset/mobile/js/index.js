@@ -4,7 +4,7 @@ var vm = new Vue({
     return {
       showCate: false,
       gameData: [],
-      gameList:[],
+      gameList: [],
       popular: [],
       footer: "",
       gameChannelId: 0,
@@ -108,6 +108,7 @@ var vm = new Vue({
       window.addEventListener("scroll", debounce(handleScroll, 500), true);
       this.$nextTick(handleScroll);
     },
+
     styleGameList(){
       const storageKey = "gameList_cache";
       const cacheExpiry = 24 * 60 * 60 * 1000; // 24小时过期
