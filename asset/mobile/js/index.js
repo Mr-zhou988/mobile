@@ -120,7 +120,8 @@ var vm = new Vue({
           const now = Date.now();
           // 如果缓存未过期，直接使用
           if (cacheData.timestamp && now - cacheData.timestamp < cacheExpiry) {
-            this.gameList = cacheData.data || [];
+            //this.gameList =cacheData.data || [];
+            // this.gameList = cacheData.data || [];
             this.$nextTick(() => {
               handleScroll();
             });
