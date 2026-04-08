@@ -108,7 +108,7 @@ var vm = new Vue({
       this.$nextTick(handleScroll);
     },
     styleGameList(){
-      const storageKey = "gameData_cache";
+      const storageKey = "gameList_cache";
       const cacheExpiry = 24 * 60 * 60 * 1000; // 24小时过期
 
       // 检查localStorage中是否有缓存
